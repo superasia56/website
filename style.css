@@ -1,0 +1,2139 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+    color: rgb(4 7 14);
+    text-align: center;
+
+    background:
+        radial-gradient(circle at top left, rgb(4 7 14), transparent 35%),
+        radial-gradient(circle at bottom right, rgb(4 7 14), transparent 35%),
+        linear-gradient(135deg, #04070e, rgb(234 224 19 / 0.99), #04070e);
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   GENERAL PAGE
+========================================= */
+
+.page {
+    min-height: 100vh;
+    width: 100%;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    padding: 60px 20px;
+
+    position: relative;
+}
+
+.page.active {
+    display: flex;
+}
+
+.page::before {
+    content: "";
+
+    position: absolute;
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.35);
+
+    top: 5%;
+    left: -100px;
+
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+
+/* =========================================
+   WELCOME PAGE
+========================================= */
+
+.welcome-page {
+    display: flex;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgb(244 248 255), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgb(237 237 42 / 0.95), transparent 30%);
+}
+
+.welcome {
+    width: 90%;
+    max-width: 750px;
+
+    padding: 55px 30px;
+
+    animation: welcomeAppear 1.4s ease;
+}
+
+.welcome > p:first-child {
+    font-size: 18px;
+    letter-spacing: 3px;
+
+    color: #04070e;
+
+    margin-bottom: 25px;
+}
+
+.welcome h1 {
+    font-size: clamp(32px, 6vw, 52px);
+
+    line-height: 1.25;
+
+    font-weight: 600;
+
+    color: #04070e;
+
+    margin-bottom: 25px;
+}
+
+.welcome h2 {
+    font-size: 25px;
+
+    font-weight: 500;
+
+    color: #04070e;
+
+    margin-bottom: 25px;
+}
+
+.welcome p {
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+button {
+    border: none;
+
+    padding: 14px 28px;
+
+    border-radius: 35px;
+
+    background: linear-gradient(
+        135deg,
+        rgb(4 7 14),
+        rgb(4 7 14)
+    );
+
+    color: rgb(251 255 240);
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgb(4 7 14 / 0.46);
+
+    transition: 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-4px) scale(1.02);
+
+    box-shadow:
+        0 15px 30px rgb(4 7 14 / 0.47);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   SURPRISE REVEAL
+========================================= */
+
+.surprise-reveal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    background:
+        radial-gradient(circle at top, #ecde10, transparent 50%),
+        linear-gradient(135deg, #e1d60c, #e6d811);
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-direction: column;
+}
+
+.envelope {
+    width: 300px;
+    height: 190px;
+
+    position: relative;
+
+    background: #04070e;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 25px 55px rgb(4 7 14 / 0.29);
+
+    animation: envelopeAppear 0.8s ease;
+}
+
+.envelope-flap {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid rgb(4 7 14 / 0.65);
+
+    top: 0;
+    left: 0;
+
+    transform-origin: top;
+
+    transition: 0.8s ease;
+
+    z-index: 3;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.letter {
+    position: absolute;
+
+    width: 250px;
+    height: 150px;
+
+    background: #fffdf9;
+
+    left: 25px;
+    top: 20px;
+
+    padding: 25px 15px;
+
+    border-radius: 8px;
+
+    z-index: 2;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.letter span {
+    font-size: 25px;
+}
+
+.letter h2 {
+    margin: 8px 0;
+}
+
+.letter p {
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.reveal-message {
+    display: none;
+
+    max-width: 700px;
+
+    padding: 30px;
+
+    animation: revealMessage 1s ease;
+}
+
+.reveal-message h1 {
+    font-size: clamp(28px, 5vw, 42px);
+
+    margin-bottom: 15px;
+}
+
+.reveal-message p {
+    font-size: 18px;
+}
+
+
+/* =========================================
+========================================= */
+
+.letter-page {
+    background:
+        radial-gradient(circle at top left, rgb(4 7 14 / 0.08), transparent 35%),
+        linear-gradient(135deg, rgb(4 7 14 / 0.22), rgb(244 215 28 / 0.66));
+}
+
+.letter-intro {
+    margin-bottom: 25px;
+
+    color: #04070e;
+
+    font-size: 17px;
+
+    animation: fadeIn 1s ease;
+}
+
+.personal-letter {
+    width: 92%;
+
+    max-width: 820px;
+
+    perspective: 1500px;
+
+    cursor: pointer;
+
+    position: relative;
+}
+
+
+/* =========================================
+   CLOSED LETTER
+   DO NOT CHANGE THIS DESIGN
+========================================= */
+
+.letter-cover {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 350px;
+
+    padding: 80px 30px;
+
+    background:
+        linear-gradient(
+            rgb(4 7 14 / 0.01),
+            rgb(4 7 14 / 0.07)
+        );
+
+    color: #04070e;
+
+    box-shadow:
+        0 25px 55px rgb(4 7 14 / 0.47),
+        inset 0 0 40px rgb(239 239 19 / 0.94);
+
+    overflow: hidden;
+
+    animation: paperAppear 1s ease;
+}
+
+
+/* Torn / rough top and bottom */
+
+.letter-cover::before {
+    content: "";
+
+    position: absolute;
+
+    top: -8px;
+    left: -2%;
+
+    width: 104%;
+
+    height: 18px;
+
+    background:
+        repeating-linear-gradient(
+            125deg,
+            #e6cda4 0px,
+            #e6cda4 8px,
+            #f4e4c1 9px,
+            #f4e4c1 15px
+        );
+
+    transform: rotate(-0.5deg);
+}
+
+.letter-cover::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -8px;
+    left: -2%;
+
+    height: 18px;
+
+    background:
+        repeating-linear-gradient(
+            125deg,
+            #e6cda4 0px,
+            #e6cda4 8px,
+            #f4e4c1 9px,
+            #f4e4c1 15px
+        );
+
+    transform: rotate(0.5deg);
+}
+
+.letter-cover span {
+    display: block;
+
+    font-size: 65px;
+
+    margin-bottom: 15px;
+
+    animation: floatingHeart 2.5s ease-in-out infinite;
+}
+
+.letter-cover h2 {
+    font-family: Georgia, serif;
+
+    font-size: 34px;
+
+    margin-bottom: 12px;
+}
+
+.letter-cover p {
+    font-size: 16px;
+
+    opacity: 0.75;
+}
+
+.paper-decoration {
+    font-size: 22px;
+
+    opacity: 0.5;
+
+    margin: 15px;
+}
+
+
+/* =========================================
+   OPEN LETTER
+   OLD / ROUGH PAPER DESIGN
+========================================= */
+
+.letter-content {
+    display: none;
+
+    position: relative;
+
+    width: 100%;
+
+    padding: 70px 60px;
+
+    text-align: left;
+
+    color: #111111;
+
+    /*
+       Old paper base
+    */
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 255, 255, 0.28),
+            transparent 18%
+        ),
+        radial-gradient(
+            circle at 80% 75%,
+            rgba(120, 80, 35, 0.08),
+            transparent 22%
+        ),
+        repeating-linear-gradient(
+            0deg,
+            rgba(100, 70, 35, 0.025) 0px,
+            rgba(100, 70, 35, 0.025) 1px,
+            transparent 1px,
+            transparent 5px
+        ),
+        linear-gradient(
+            135deg,
+            #04070e,
+            #b6eaa4,
+            #f4e5c3
+        );
+
+    /*
+       Rough paper shadow
+    */
+    box-shadow:
+        0 30px 60px rgba(70, 45, 20, 0.28),
+        inset 0 0 45px rgba(100, 65, 25, 0.16),
+        inset 0 0 100px rgba(120, 80, 30, 0.08);
+
+    /*
+       Slightly imperfect paper shape
+    */
+    border-radius:
+        2px 5px 3px 6px;
+
+    transform: rotate(-0.25deg);
+
+    animation: letterOpen 0.9s ease;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   OLD PAPER ROUGH EDGES
+========================================= */
+
+.letter-content::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 20px;
+
+    background:
+        repeating-linear-gradient(
+            125deg,
+            #dfc28c 0px,
+            #dfc28c 7px,
+            #f2dfb8 8px,
+            #f2dfb8 13px,
+            #d8b879 14px,
+            #e9d2a3 17px
+        );
+
+    opacity: 0.75;
+
+    transform: rotate(-0.3deg);
+}
+
+
+/* Bottom rough edge */
+
+.letter-content::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 20px;
+
+    background:
+        repeating-linear-gradient(
+            125deg,
+            #dfc28c 0px,
+            #dfc28c 8px,
+            #f2dfb8 9px,
+            #f2dfb8 14px,
+            #d8b879 15px,
+            #e9d2a3 18px
+        );
+
+    opacity: 0.75;
+
+    transform: rotate(0.3deg);
+}
+
+
+/* =========================================
+   LETTER DECORATION
+========================================= */
+
+.letter-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 22px;
+
+    opacity: 0.55;
+
+    margin-bottom: 25px;
+
+    padding-top: 5px;
+}
+
+
+/* =========================================
+   LETTER TEXT
+========================================= */
+
+.letter-content h1 {
+    text-align: center;
+
+    font-family: Georgia, serif;
+
+    font-size: 32px;
+
+    line-height: 1.4;
+
+    color: #493724;
+
+    margin-bottom: 38px;
+
+    text-shadow:
+        1px 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.letter-content p {
+    font-family: Georgia, serif;
+
+    font-size: 17px;
+
+    line-height: 1.95;
+
+    margin-bottom: 25px;
+
+    color: #04070e;
+}
+
+.letter-content h3 {
+    text-align: center;
+
+    font-family: Georgia, serif;
+
+    margin-top: 30px;
+
+    line-height: 1.7;
+
+    color: #04070e;
+}
+
+
+/* =========================================
+   CLOSE LETTER BUTTON
+========================================= */
+
+.close-letter {
+    display: block;
+
+    margin: 40px auto 0;
+
+    background: #04070e;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navigation-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-top: 35px;
+}
+
+.next-button {
+    background:
+        linear-gradient(
+            135deg,
+            rgb(4 7 14),
+            rgb(4 7 14)
+        );
+
+    color: #fbfff0;
+}
+
+.back-button {
+    background: rgb(14 4 7 / 0.63);
+}
+
+
+/* =========================================
+   SECTION HEADINGS
+========================================= */
+
+.section-heading {
+    margin-bottom: 35px;
+
+    animation: fadeIn 1s ease;
+}
+
+.section-heading > span {
+    display: block;
+
+    font-size: 42px;
+
+    margin-bottom: 10px;
+}
+
+.section-heading h1 {
+    font-size: clamp(30px, 5vw, 44px);
+
+    color: #04070e;
+
+    margin-bottom: 12px;
+}
+
+.section-heading p {
+    font-size: 17px;
+
+    color: #04070e;
+}
+
+
+/* =========================================
+   PRAYER PAGE
+========================================= */
+
+.prayer-page {
+    background: rgb(223 202 14 / 0.9);
+        radial-gradient(circle at top right, rgba(255, 225, 178, 0.45), transparent 35%),
+        linear-gradient(135deg, #fff9ef, #f8f0ff);
+}
+
+.prayer-card {
+    position: relative;
+
+    width: 92%;
+
+    max-width: 820px;
+
+    padding: 55px 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgb(246 122 141 / 0.66),
+            rgb(225 107 135 / 0.68)
+        );
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 25px 55px rgb(241 211 13),
+        inset 0 0 35px rgba(150, 110, 50, 0.08);
+
+    border: 1px solid rgb(4 7 14);
+
+    animation: cardAppear 1s ease;
+
+    overflow: hidden;
+}
+
+.prayer-card::before,
+.prayer-card::after {
+    content: "✦  ✧  ✦  ✧  ✦";
+
+    position: absolute;
+
+    width: 100%;
+
+    left: 0;
+
+    color: #04070e;
+
+    opacity: 0.45;
+
+    letter-spacing: 8px;
+}
+
+.prayer-card::before {
+    top: 15px;
+}
+
+.prayer-card::after {
+    bottom: 15px;
+}
+
+.prayer-icon {
+    font-size: 50px;
+
+    margin-bottom: 25px;
+}
+
+.prayer-card p {
+    font-family: Georgia, serif;
+
+    font-size: 17px;
+
+    line-height: 1.9;
+
+    margin-bottom: 23px;
+
+    color: #04070e;
+}
+
+.prayer-ending {
+    font-family: Georgia, serif;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    margin-top: 20px;
+
+    color: #04070e;
+}
+
+
+/* =========================================
+   APPRECIATION PAGE
+========================================= */
+
+.appreciation-page {
+    background:
+        radial-gradient(circle at top left, rgb(4 7 14 / 0.61), transparent 35%),
+        radial-gradient(circle at bottom right, rgb(4 7 14 / 0.58), transparent 35%),
+        linear-gradient(135deg, rgb(237 210 37 / 0.75), rgb(239 235 13 / 0.75));
+}
+
+.cards {
+    width: 92%;
+
+    max-width: 900px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 22px;
+}
+
+
+/* =========================================
+   COLORFUL CARDS
+========================================= */
+
+.card {
+    position: relative;
+
+    min-height: 230px;
+
+    padding: 30px 25px;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 15px 35px rgba(70, 50, 70, 0.12);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px) rotate(-1deg);
+
+    box-shadow:
+        0 22px 45px rgb(4 7 14);
+}
+
+.card-icon {
+    font-size: 40px;
+
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    font-size: 22px;
+
+    margin-bottom: 12px;
+}
+
+.card-message {
+    max-height: 0;
+
+    opacity: 0;
+
+    overflow: hidden;
+
+    transition:
+        max-height 0.6s ease,
+        opacity 0.5s ease;
+}
+
+.card-message p {
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    margin: 8px 0;
+}
+
+.card.active {
+    transform: translateY(-5px);
+}
+
+.card.active .card-message {
+    max-height: 250px;
+
+    opacity: 1;
+}
+
+.card.active .tap-hint {
+    opacity: 0;
+}
+
+.tap-hint {
+    display: block;
+
+    margin-top: 15px;
+
+    font-size: 13px;
+
+    opacity: 0.6;
+
+    transition: 0.3s;
+}
+
+
+/* =========================================
+   INDIVIDUAL CARD COLORS
+========================================= */
+
+.card-pink {
+    background:
+        linear-gradient(
+            135deg,
+            rgb(237 17 42 / 0.24),
+            rgb(230 14 64 / 0.15)
+        );
+
+    color: #04070e;
+}
+
+.card-purple {
+    background:
+        linear-gradient(
+            135deg,
+            rgb(60 205 7 / 0.28),
+            rgb(60 182 17 / 0.25)
+        );
+
+    color: #04070e;
+}
+
+.card-blue {
+    background:
+        linear-gradient(
+            135deg,
+            rgb(146 45 228 / 0.43),
+            rgb(182 22 244 / 0.42)
+        );
+
+    color: #04070e;
+}
+
+.card-gold {
+    background:
+        linear-gradient(
+            135deg,
+            rgb(23 239 189 / 0.26),
+            rgb(22 214 156 / 0.22)
+        );
+
+    color: #04070e;
+}
+
+
+/* =========================================
+   QUIZ PAGE
+========================================= */
+
+.quiz-page {
+    background:
+        radial-gradient(circle at top right, rgb(251 255 240 / 0.89), transparent 35%),
+        linear-gradient(135deg, rgb(214 201 15 / 0.98), rgb(228 228 18 / 0.99));
+}
+
+.quiz {
+    width: 92%;
+
+    max-width: 850px;
+}
+
+.quiz-question {
+    padding: 28px;
+
+    margin-bottom: 25px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgb(243 251 16 / 0.99),
+            rgb(237 234 12 / 0.98)
+        );
+
+    box-shadow:
+        0 15px 35px rgba(70, 50, 70, 0.10);
+
+    border: 1px solid rgb(255 252 244);
+
+    animation: cardAppear 0.8s ease;
+}
+
+.quiz-question h3 {
+    font-size: 19px;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+
+    color: #04070e;
+}
+
+.quiz-question button {
+    display: block;
+
+    width: 100%;
+
+    margin: 10px 0;
+
+    padding: 13px 18px;
+
+    font-size: 15px;
+
+    text-align: left;
+    color: #111111;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f9f1ff
+        );
+}
+
+.quiz-question button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgb(219 234 16),
+            rgb(227 216 18 / 0.85)
+        );
+}
+
+.quiz-reaction {
+    margin-top: 12px;
+
+    padding: 10px;
+
+    border-radius: 15px;
+
+    background: rgb(159 7 30 / 0.94);
+
+    color: #fbfff0;
+
+    font-weight: 600;
+
+    animation: reactionAppear 0.4s ease;
+}
+
+.quiz-ending {
+    margin-top: 35px;
+
+    padding: 25px;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgb(251 255 240 / 0.41),
+            rgb(255 252 244 / 0.49)
+        );
+
+    color: #04070e;
+
+    box-shadow:
+        0 12px 30px rgb(4 7 14);
+}
+
+/* BEST TEACHER AWARD PAGE */
+
+.award-page {
+    background:
+        radial-gradient(circle at center, rgba(255, 245, 200, 0.7), transparent 45%),
+        linear-gradient(135deg, #f7f1dc, #eee8f8);
+    overflow: hidden;
+}
+
+.award-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: awardAppear 1s ease;
+}
+
+.award-trophy {
+    font-size: 150px;
+    margin-bottom: 20px;
+    animation: trophyPop 1.2s ease;
+    filter: drop-shadow(0 15px 20px rgba(80, 60, 30, 0.25));
+}
+
+.award-content h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(32px, 6vw, 52px);
+    color: #3d3428;
+    margin-bottom: 12px;
+    animation: awardText 1.2s ease 0.3s both;
+}
+
+.award-content h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(25px, 5vw, 38px);
+    color: #9a7535;
+    margin-bottom: 35px;
+    animation: awardText 1.2s ease 0.5s both;
+}
+
+.award-content .next-button {
+    animation: awardText 1.2s ease 0.7s both;
+}
+
+@keyframes trophyPop {
+    0% {
+        transform: scale(0.2) rotate(-15deg);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.15) rotate(5deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes awardText {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes awardAppear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes welcomeAppear {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+@keyframes envelopeAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.7)
+            translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+
+}
+
+@keyframes revealMessage {
+
+    from {
+        opacity: 0;
+
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
+}
+
+@keyframes paperAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            rotate(-2deg)
+            translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            rotate(0)
+            translateY(0);
+    }
+
+}
+
+@keyframes letterOpen {
+
+    from {
+        opacity: 0;
+
+        transform:
+            rotateX(-15deg)
+            translateY(35px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            rotateX(0)
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+@keyframes floatingHeart {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+}
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+@keyframes reactionAppear {
+
+    from {
+        opacity: 0;
+
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .page {
+        padding: 45px 14px;
+    }
+
+    .welcome {
+        padding: 35px 15px;
+    }
+
+    .welcome h1 {
+        font-size: 34px;
+    }
+
+    .welcome h2 {
+        font-size: 21px;
+    }
+
+    .welcome p {
+        font-size: 16px;
+    }
+
+
+    .envelope {
+        width: 280px;
+    }
+
+    .envelope-flap {
+        border-left-width: 140px;
+        border-right-width: 140px;
+    }
+
+    .letter {/* =====================================
+       MOBILE OLD LETTER
+    ===================================== */
+
+    .letter-content {
+        padding: 50px 25px;
+
+        transform: rotate(-0.15deg);
+    }
+
+    .letter-content h1 {
+        font-size: 25px;
+
+        line-height: 1.45;
+    }
+
+    .letter-content p {
+        font-size: 16px;
+
+        line-height: 1.85;
+    }
+
+
+    .prayer-card {
+        padding: 45px 25px;
+    }
+
+    .prayer-card p {
+        font-size: 16px;
+
+        line-height: 1.8;
+    }
+
+
+    .cards {
+        grid-template-columns: 1fr;
+
+        width: 94%;
+    }
+
+    .card {
+        min-height: 210px;
+    }
+
+
+    .quiz {
+        width: 94%;
+    }
+
+    .quiz-question {
+        padding: 22px 18px;
+    }
+
+    .quiz-question h3 {
+        font-size: 17px;
+        color: #111111;
+    }
+
+
+    .navigation-buttons {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .navigation-buttons button {
+        width: 90%;
+
+        max-width: 350px;
+    }
+
+    .next-button,
+    .back-button {
+        margin-top: 8px;
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .welcome h1 {
+        font-size: 29px;
+    }
+
+    .letter-cover {
+        min-height: 280px;
+
+        padding: 55px 15px;
+    }
+
+    .letter-cover span {
+        font-size: 50px;
+    }
+
+    .letter-content {
+        padding: 45px 18px;
+    }
+
+    .letter-content h1 {
+        font-size: 23px;
+    }
+
+    .letter-content p {
+        font-size: 15px;
+    }
+
+    .prayer-card {
+        padding: 40px 18px;
+    }
+
+}
+        width: 230px;
+        left: 25px;
+    }
+
+
+    .letter-cover {
+        min-height: 300px;
+
+        padding: 65px 20px;
+    }
+
+    .letter-cover h2 {
+        font-size: 28px;
+    }
+
+/* =========================================
+   PAGE 5 - GIFT SURPRISE
+========================================= */
+
+.gift-page {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.55),
+            transparent 55%
+        ),
+        linear-gradient(
+            135deg,
+            #f7ead0,
+            #e7cda5
+        );
+}
+
+
+/* TITLE */
+
+.gift-title {
+    padding-top: 55px;
+    position: relative;
+    z-index: 10;
+}
+
+.gift-title p {
+    font-family: Georgia, serif;
+    font-size: 19px;
+    font-style: italic;
+    color: #795b40;
+}
+
+
+/* GIFT WRAPPER */
+
+.gift-wrapper {
+    position: absolute;
+    left: 50%;
+    bottom: 80px;
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+}
+
+
+/* BOX */
+
+.gift-box {
+    position: relative;
+    width: 190px;
+    height: 155px;
+
+    margin: auto;
+
+    cursor: pointer;
+}
+
+
+/* BODY */
+
+.gift-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 190px;
+    height: 120px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9f1227,
+            #4c000e
+        );
+
+    box-shadow:
+        0 20px 35px rgb(250 230 14 / 0.51);
+}
+
+
+/* LID */
+
+.gift-lid {
+    position: absolute;
+
+    left: -8px;
+    top: 20px;
+
+    width: 206px;
+    height: 42px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #630707,
+            #870707
+        );
+
+    z-index: 5;
+
+    transition: 0.9s ease;
+}
+
+
+/* RIBBONS */
+
+.gift-ribbon-vertical {
+    position: absolute;
+
+    left: 78px;
+    top: 0;
+
+    width: 35px;
+    height: 100%;
+
+    background: #e7c77f;
+}
+
+
+.gift-ribbon-horizontal {
+    position: absolute;
+
+    left: 0;
+    top: 45px;
+
+    width: 100%;
+    height: 28px;
+
+    background: #e7c77f;
+}
+
+
+/* BOW */
+
+.gift-bow {
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    width: 75px;
+    height: 45px;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+}
+
+.gift-bow span {
+    position: absolute;
+
+    top: 5px;
+
+    width: 38px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    background: #e7c77f;
+}
+
+.gift-bow span:first-child {
+    left: 0;
+    transform: rotate(-25deg);
+}
+
+.gift-bow span:nth-child(2) {
+    right: 0;
+    transform: rotate(25deg);
+}
+
+
+/* OPEN BUTTON */
+
+.gift-open-btn {
+    margin-top: 30px;
+
+    border: none;
+
+    padding: 14px 30px;
+
+    border-radius: 30px;
+
+    background: #650610;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.gift-open-btn:hover {
+    transform: translateY(-3px);
+}
+
+
+/* FLYING AREA */
+
+.gift-flying {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   BALLOONS
+========================================= */
+
+.gift-balloon {
+    position: absolute;
+
+    bottom: 100px;
+
+    width: 105px;
+    height: 125px;
+
+    border-radius: 50% 50% 45% 45%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    font-family: Georgia, serif;
+    font-size: 11px;
+    font-weight: bold;
+
+    opacity: 0;
+
+    box-shadow:
+        inset -10px -12px 20px rgba(0,0,0,0.12),
+        0 10px 20px rgba(70,45,25,0.2);
+}
+
+
+/* BALLOON STRINGS */
+
+.gift-balloon i {
+    position: absolute;
+
+    left: 50%;
+    bottom: -150px;
+
+    width: 1px;
+    height: 150px;
+
+    background: rgba(80,60,40,0.45);
+}
+
+
+/* BALLOON POSITIONS */
+
+.gb1 {
+    left: 8%;
+    background: #a85d55;
+}
+
+.gb2 {
+    left: 37%;
+    background: #87966c;
+}
+
+.gb3 {
+    right: 10%;
+    background: #b78952;
+}
+
+.gb4 {
+    left: 67%;
+    background: #9b6d72;
+}
+
+
+/* =========================================
+   PICTURE CARDS
+========================================= */
+
+.teacher-fly-card {
+    position: absolute;
+
+    width: 165px;
+
+    padding: 9px 9px 17px;
+
+    background: #f8efd9;
+
+    border: 1px solid rgba(90,65,40,0.2);
+
+    box-shadow:
+        0 15px 30px rgba(70,45,25,0.28);
+
+    opacity: 0;
+}
+
+
+/* PICTURES */
+
+.teacher-fly-card img {
+    width: 100%;
+    height: 160px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* CARD STRING */
+
+.picture-string {
+    position: absolute;
+
+    left: 50%;
+    bottom: -95px;
+
+    width: 1px;
+    height: 95px;
+
+    background: rgba(80,60,40,0.45);
+}
+
+
+/* CARD POSITIONS */
+
+.tfc1 {
+    left: 5%;
+    bottom: 20px;
+    transform: rotate(-8deg);
+}
+
+.tfc2 {
+    left: 24%;
+    bottom: -10px;
+    transform: rotate(6deg);
+}
+
+.tfc3 {
+    left: 43%;
+    bottom: 0;
+    transform: rotate(-4deg);
+}
+
+.tfc4 {
+    right: 23%;
+    bottom: -15px;
+    transform: rotate(7deg);
+}
+
+.tfc5 {
+    right: 5%;
+    bottom: 25px;
+    transform: rotate(-7deg);
+}
+
+
+/* =========================================
+   FINAL MESSAGE
+========================================= */
+
+.gift-final {
+    position: absolute;
+
+    left: 50%;
+    top: 45%;
+
+    width: 90%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.7);
+
+    opacity: 0;
+
+    z-index: 50;
+}
+
+.gift-final h1 {
+    font-family: Georgia, serif;
+
+    font-size: 45px;
+
+    color: #930013;
+}
+
+.gift-final p {
+    margin-top: 10px;
+
+    font-family: Georgia, serif;
+
+    font-style: italic;
+
+    font-size: 19px;
+
+    color: #4c050f;
+}
+
+
+/* =========================================
+   OPENED STATE
+========================================= */
+
+.gift-page.opened .gift-lid {
+    transform:
+        translateY(-90px)
+        rotate(-5deg);
+}
+
+.gift-page.opened .gift-open-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* =========================================
+   BALLOON FLY
+========================================= */
+
+.gift-page.opened .gift-balloon {
+    animation: giftBalloonFly 6s ease-out forwards;
+}
+
+@keyframes giftBalloonFly {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(0)
+            scale(0.4);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translateY(-850px)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   CARD FLY
+========================================= */
+
+.gift-page.opened .teacher-fly-card {
+    animation: teacherCardFly 6s ease-out forwards;
+}
+
+@keyframes teacherCardFly {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(130px)
+            scale(0.35)
+            rotate(0deg);
+    }
+
+    18% {
+        opacity: 1;
+    }
+
+    55% {
+        transform:
+            translateY(-280px)
+            scale(1)
+            rotate(5deg);
+    }
+
+    100% {
+        opacity: 0.95;
+
+        transform:
+            translateY(-760px)
+            scale(0.9)
+            rotate(9deg);
+    }
+}
+
+
+/* DELAYS */
+
+.gift-page.opened .gb1 {
+    animation-delay: 0.1s;
+}
+
+.gift-page.opened .gb2 {
+    animation-delay: 0.4s;
+}
+
+.gift-page.opened .gb3 {
+    animation-delay: 0.7s;
+}
+
+.gift-page.opened .gb4 {
+    animation-delay: 1s;
+}
+
+
+.gift-page.opened .tfc1 {
+    animation-delay: 0.5s;
+}
+
+.gift-page.opened .tfc2 {
+    animation-delay: 0.9s;
+}
+
+.gift-page.opened .tfc3 {
+    animation-delay: 1.3s;
+}
+
+.gift-page.opened .tfc4 {
+    animation-delay: 1.7s;
+}
+
+.gift-page.opened .tfc5 {
+    animation-delay: 2.1s;
+}
+
+
+/* FINAL MESSAGE */
+
+.gift-page.opened .gift-final {
+    animation:
+        giftFinalShow 1.5s ease forwards;
+
+    animation-delay: 2.5s;
+}
+
+@keyframes giftFinalShow {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .gift-title {
+        padding-top: 30px;
+    }
+
+    .gift-title p {
+        font-size: 16px;
+    }
+
+    .gift-wrapper {
+        bottom: 55px;
+    }
+
+    .gift-box {
+        transform: scale(0.82);
+    }
+
+    .gift-balloon {
+        width: 70px;
+        height: 90px;
+        font-size: 8px;
+    }
+
+    .gb1 {
+        left: 2%;
+    }
+
+    .gb2 {
+        left: 35%;
+    }
+
+    .gb3 {
+        right: 2%;
+    }
+
+    .gb4 {
+        left: 65%;
+    }
+
+    .teacher-fly-card {
+        width: 110px;
+        padding: 6px 6px 12px;
+    }
+
+    .teacher-fly-card img {
+        height: 110px;
+    }
+
+    .tfc1 {
+        left: 1%;
+    }
+
+    .tfc2 {
+        left: 22%;
+    }
+
+    .tfc3 {
+
